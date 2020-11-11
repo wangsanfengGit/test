@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+namespace 声明mapper对象映射路径(IStudentMapper和Studentmapper.xml的映射关系)
+  -->
+<mapper namespace="com.mapper.IStudentMapper">
+  <!-- 增加 -->
+  <insert id="save" parameterType="com.po.Student">
+   insert into student(sname,sex,address,birthday,classid) values(#{sname},#{sex},#{address},#{birthday},#{classid}) 
+  </insert>
+  <!-- 修改 -->
+  <update id="update" parameterType="com.po.Student">
+  update student set sname=#{sname},sex=#{sex},address=#{address},birthday=#{birthday},classid=#{classid} where stuid=#{stuid}
+  </update>
+  <!-- 删除 -->
+  <delete id="delById" parameterType="java.lang.Integer">
+  delete from student where stuid=#{sid}
+  </delete>
+  <!-- 查询单个 -->
+  <select id="findById" parameterType="java.lang.Integer" resultType="com.po.Student">
+  select * from student where stuid=#{sid}
+  </select>
+  <!-- 查询所有 -->
+  <select id="findAll" resultType="student">
+  select * from vwstu
+  </select>
+  <!-- 总行数 -->
+  <select id="findMaxRows" resultType="int">
+  select count(*) from student
+  </select>
+</mapper>
